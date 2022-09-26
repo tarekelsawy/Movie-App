@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app_with_clean_architecture/movies/data/data_source/movie_remote_data_source.dart';
+import 'package:movie_app_with_clean_architecture/movies/data/repo/movie_repo.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_entity.dart';
+import 'package:movie_app_with_clean_architecture/movies/domain/repo/base_movie_repo.dart';
+import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_playing_now_movie_usecase.dart';
 
-void main() {
-  MovieEntity mov1 = MovieEntity(
-    id: 3,
-    title: 'title',
-    backDropPath: 'backDropPath',
-    overview: 'overview',
-    voteAverage: 3.9,
-    genreIds:const [1],
-  );
-  MovieEntity mov2 = MovieEntity(
-    id: 3,
-    title: 'title',
-    backDropPath: 'backDropPath',
-    overview: 'overview',
-    voteAverage: 3.9,
-    genreIds: const[1],
-  );
-  print(mov1 == mov2);
-  print(mov1.hashCode);
-  print(mov2.hashCode);
+Future<void> main() async {
+  BaseRemoteMovieDataSource baseRemoteMovieDataSource = RemoteMovieDataSource();
+  BaseMovieRepo baseMovieRepo = MovieRepo(baseRemoteMovieDataSource);
+  UseCaseGetPlayingNowMovies useCaseGetPlayingNowMovies =
+      UseCaseGetPlayingNowMovies(baseMovieRepo);
+  final res = await useCaseGetPlayingNowMovies.useCaseGetData();
+  print(res);
+  res.fold((l) => l,(r)=>r);
+
   runApp(const MyApp());
 }
 

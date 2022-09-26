@@ -1,46 +1,31 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-import 'dart:html';
+import 'package:equatable/equatable.dart';
 
-import 'package:collection/collection.dart';
-
-class MovieEntity {
-  int id;
-  String title;
-  String backDropPath;
-  String overview;
-  double voteAverage;
-  List genreIds;
-  MovieEntity({
+class MovieEntity extends Equatable {
+  final int id;
+  final String title;
+  final String backDropPath;
+  final String overview;
+  final double voteAverage;
+  final List genreIds;
+  final String releaseDate;
+   const MovieEntity({
     required this.id,
     required this.title,
     required this.backDropPath,
     required this.overview,
     required this.voteAverage,
     required this.genreIds,
+    required this.releaseDate,
   });
 
   @override
-  bool operator ==(covariant MovieEntity other) {
-    if (identical(this, other)) return true;
-    final listEquals = const DeepCollectionEquality().equals;
-  
-    return 
-      other.id == id &&
-      other.title == title &&
-      other.backDropPath == backDropPath &&
-      other.overview == overview &&
-      other.voteAverage == voteAverage &&
-      listEquals(other.genreIds, genreIds);
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-      title.hashCode ^
-      backDropPath.hashCode ^
-      overview.hashCode ^
-      voteAverage.hashCode ^
-      genreIds.hashCode;
-  }
+  List<Object?> get props => [
+        id,
+        title,
+        backDropPath,
+        overview,
+        voteAverage,
+        genreIds,
+        releaseDate,
+      ];
 }
