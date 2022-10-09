@@ -13,7 +13,7 @@ abstract class Failure extends Equatable {
 class ServerFailure extends Failure{
   const ServerFailure(super.message);
 }
-
+//todo:local server
 class LocalServer extends Failure{
   const LocalServer(super.message);
 }
