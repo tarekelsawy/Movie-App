@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:movie_app_with_clean_architecture/core/constances/api_constances.dart';
 import 'package:movie_app_with_clean_architecture/core/error/exceptions.dart';
 import 'package:movie_app_with_clean_architecture/core/network/error_message_model.dart';
+import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
 import 'package:movie_app_with_clean_architecture/movies/data/model/movie_model.dart';
 
 abstract class BaseRemoteMovieDataSource {
@@ -42,7 +42,8 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
       print('onPopularError:${onError.toString()}');
     });
     if (response.statusCode == 200) {
-      return (response.data as List)
+      
+      return (response.data['results'] as List)
           .map((movieJson) => MovieModel.fromJson(movieJson))
           .toList();
     } else {
@@ -61,7 +62,7 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
       print('onPopularError:${onError.toString()}');
     });
     if (response.statusCode == 200) {
-      return (response.data as List)
+      return (response.data['results'] as List)
           .map((movieJson) => MovieModel.fromJson(movieJson))
           .toList();
     } else {
