@@ -15,7 +15,7 @@ class MovieModel extends MovieEntity {
         title: json['title'],
         backDropPath: json['backdrop_path'],
         overview: json['overview'],
-        voteAverage: json['vote_average'],
+        voteAverage: json['vote_average'].toDouble(),
         genreIds: json['genre_ids'],
         releaseDate: json['release_date'],
       );
