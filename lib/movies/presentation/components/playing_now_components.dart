@@ -16,7 +16,7 @@ class PlayingNowComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MovieBloc, MoviesStates>(
       buildWhen: ((previous, current) {
-        return current is StateGetPlayingNowMovies?true:false;
+        return current is StateGetPlayingNowMovies ? true : false;
       }),
       builder: (context, state) {
         late Widget widget;
@@ -25,7 +25,9 @@ class PlayingNowComponent extends StatelessWidget {
             widget = const LoadingWidget();
             break;
           case RequestStates.success:
-            widget = SuccesWidget(state: state,);
+            widget = SuccesWidget(
+              state: state,
+            );
             break;
           case RequestStates.error:
             widget = ErrorWidget(
@@ -40,21 +42,23 @@ class PlayingNowComponent extends StatelessWidget {
 }
 
 class ErrorWidget extends StatelessWidget {
-  final state;
+  final MoviesStates state;
   const ErrorWidget({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: MediaQuery.of(context).size.height * 0.425,
-        child: Center(
-            child: Text(
+      height: MediaQuery.of(context).size.height * 0.425,
+      child: Center(
+        child: Text(
           state.message.toString(),
           style: Theme.of(context).textTheme.bodyText1!.copyWith(
                 fontSize: 24.0,
                 color: Colors.grey[200],
               ),
-        )));
+        ),
+      ),
+    );
   }
 }
 
@@ -72,9 +76,11 @@ class LoadingWidget extends StatelessWidget {
 
 class SuccesWidget extends StatelessWidget {
   final MoviesStates state;
-  
-  const SuccesWidget(
-      {super.key, required this.state, });
+
+  const SuccesWidget({
+    super.key,
+    required this.state,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +89,6 @@ class SuccesWidget extends StatelessWidget {
       child: CarouselSlider(
         options: CarouselOptions(
           height: MediaQuery.of(context).size.height * 0.44,
-        
           viewportFraction: 1.0,
           autoPlay: true,
           enableInfiniteScroll: true,
@@ -107,12 +112,15 @@ class SuccesWidget extends StatelessWidget {
                   blendMode: BlendMode.dstOut,
                   child: CachedNetworkImage(
                     placeholder: ((context, url) => Shimmer.fromColors(
-                          period: const Duration(milliseconds: 500),
+                          period: const Duration(milliseconds: 800),
                           baseColor: Colors.grey,
                           highlightColor: Colors.white,
-                          child: SizedBox(
+                          child: Container(
                             height: MediaQuery.of(context).size.height * 0.425,
-                            
+                            decoration:const BoxDecoration(
+                            color: Colors.black38,
+                             
+                  ),
                           ),
                         )),
                     imageUrl: Constances.getUrl(item.backDropPath),

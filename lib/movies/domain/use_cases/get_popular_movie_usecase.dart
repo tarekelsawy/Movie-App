@@ -7,7 +7,7 @@ class UseCaseGetPopularMovies {
   BaseMovieRepo baseMovieRepo;
   UseCaseGetPopularMovies(this.baseMovieRepo);
 
-  Future<Either<Failure,List<MovieEntity>>> useCaseGetData()async{
+  Future<Either<Failure,List<MovieEntity>>> call()async{
     return await baseMovieRepo.getPopularMovies();
   }
 }

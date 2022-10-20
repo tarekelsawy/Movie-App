@@ -7,7 +7,7 @@ import 'package:movie_app_with_clean_architecture/movies/domain/repo/base_movie_
 class UseCaseGetPlayingNowMovies {
   BaseMovieRepo baseMovieRepo;
   UseCaseGetPlayingNowMovies(this.baseMovieRepo);
-  Future<Either<Failure, List<MovieEntity>>> useCaseGetData() async {
+  Future<Either<Failure, List<MovieEntity>>> call() async {
     return await baseMovieRepo.getPlayingNowMovies();
   }
 }

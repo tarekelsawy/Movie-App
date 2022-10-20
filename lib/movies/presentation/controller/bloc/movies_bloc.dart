@@ -21,7 +21,7 @@ class MovieBloc extends Bloc<MoviesEvents, MoviesStates> {
   }
   Future<void> _getPlayingNow(
       EventGetPlayingNowMovies event, Emitter<MoviesStates> emit) async {
-    final result = await useCaseGetPlayingNowMovies.useCaseGetData();
+    final result = await useCaseGetPlayingNowMovies();
     result.fold((failure) {
       emit(StateGetPlayingNowMovies(
           message: failure.message, requestStates: RequestStates.error));
@@ -35,7 +35,7 @@ class MovieBloc extends Bloc<MoviesEvents, MoviesStates> {
 
   Future<void> _getPopular(
       EventGetPopularMovies event, Emitter<MoviesStates> emit) async {
-    final result = await useCaseGetPopularMovies.useCaseGetData();
+    final result = await useCaseGetPopularMovies();
     result.fold((failure) {
       emit(StateGetPopularMovies(
           message: failure.message, requestStates: RequestStates.error));
@@ -49,7 +49,7 @@ class MovieBloc extends Bloc<MoviesEvents, MoviesStates> {
 
   Future<void> _getTopRated(
       EventGetTopRatedMovies event, Emitter<MoviesStates> emit) async {
-    final result = await useCaseGetTopRatedMovies.useCaseGetData();
+    final result = await useCaseGetTopRatedMovies();
     result.fold((failure) {
       emit(StateGetTopRatedMovies(
           message: failure.message, requestStates: RequestStates.error));
