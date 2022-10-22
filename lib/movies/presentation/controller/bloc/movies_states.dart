@@ -4,18 +4,18 @@ import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_e
 
 // ignore: must_be_immutable
 class MoviesStates extends Equatable {
-   List<MovieEntity> list;
-   RequestStates requestStates;
-   String message;
+  List<MovieEntity> list;
+  RequestStates requestStates;
+  String message;
 
-   MoviesStates({
+  MoviesStates({
     this.list = const [],
     this.requestStates = RequestStates.loading,
     this.message = '',
   });
 
   @override
-  List<Object?> get props => [list , requestStates, message];
+  List<Object?> get props => [list, requestStates, message];
 }
 
 // ignore: must_be_immutable
@@ -27,21 +27,22 @@ class StateGetPlayingNowMovies extends MoviesStates {
       {List<MovieEntity> list = const [],
       String message = '',
       RequestStates requestStates = RequestStates.loading}) {
-     this.list=list;
-     this.message=message;
-     this.requestStates=requestStates;
+    this.list = list;
+    this.message = message;
+    this.requestStates = requestStates;
   }
 }
 
 // ignore: must_be_immutable
 class StateGetPopularMovies extends MoviesStates {
-  StateGetPopularMovies(
-      {List<MovieEntity> list = const [],
-      String message = '',
-      RequestStates requestStates = RequestStates.loading}) {
-     this.list=list;
-     this.message=message;
-     this.requestStates=requestStates;
+  StateGetPopularMovies({
+    List<MovieEntity> list = const [],
+    String message = '',
+    RequestStates requestStates = RequestStates.loading,
+  }) {
+    this.list = list;
+    this.message = message;
+    this.requestStates = requestStates;
   }
 }
 
@@ -50,9 +51,9 @@ class StateGetTopRatedMovies extends MoviesStates {
   StateGetTopRatedMovies(
       {List<MovieEntity> list = const [],
       String message = '',
-      RequestStates requestStates = RequestStates.loading}) {
-     this.list=list;
-     this.message=message;
-     this.requestStates=requestStates;
+      RequestStates requestStates = RequestStates.loading,}) {
+    this.list = list;
+    this.message = message;
+    this.requestStates = requestStates;
   }
 }

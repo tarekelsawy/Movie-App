@@ -5,6 +5,8 @@ class Constances {
   static const endPointTopRated = 'movie/top_rated';
   static const apiKey = '6c964a6f9febfdb19b92ce80e5b6620a';
   static const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
-  static String  getUrl(String imagePath) => baseImageUrl+imagePath;
-}
+  static String getUrl(String imagePath) => baseImageUrl + imagePath;
+  static String getMovieDetailsPath(int movieId) => '${baseURL}movie/${movieId.toString()}';
+} 
+//https://api.themoviedb.org/3/movie/616820?api_key=6c964a6f9febfdb19b92ce80e5b6620a
 //https://api.themoviedb.org/3/movie/now_playing?api_key=6c964a6f9febfdb19b92ce80e5b6620a

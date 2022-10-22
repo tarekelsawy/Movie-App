@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app_with_clean_architecture/core/services/service_locator.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/bloc_observer.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_details_bloc/movie_details_bloc.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movies_home_screen.dart';
 
 Future<void> main() async {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 39, 39, 39),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 39, 39, 39),
         primarySwatch: Colors.blue,
         fontFamily: 'Righteous Regular',
         textTheme: const TextTheme(
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MovieHomeScreen(),
+      home: const MovieDetailsScreen(),
     );
   }
 }

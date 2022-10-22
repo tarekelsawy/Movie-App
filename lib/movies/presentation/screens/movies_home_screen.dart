@@ -1,19 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:movie_app_with_clean_architecture/core/services/service_locator.dart';
-import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
-import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_entity.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/playing_now_components.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/popular_component.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/top_rated_component.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_events.dart';
-import 'package:shimmer/shimmer.dart';
 
 class MovieHomeScreen extends StatelessWidget {
   const MovieHomeScreen({Key? key}) : super(key: key);

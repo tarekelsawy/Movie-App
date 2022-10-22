@@ -1,7 +1,7 @@
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_entity.dart';
 
 class MovieModel extends MovieEntity {
-  MovieModel({
+  const MovieModel({
     required super.id,
     required super.title,
     required super.backDropPath,
