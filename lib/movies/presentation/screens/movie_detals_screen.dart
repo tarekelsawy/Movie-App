@@ -12,10 +12,10 @@ class MovieDetailsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<MovieDetailsBloc>()
         ..add(
-          const OnGetMovieDetailsEvent(616820),
+          const OnGetMovieRecommendationsEvent(616820),
         ),
-        lazy: false,
-        child:Container(),
+      lazy: false,
+      child: Container(),
     );
   }
 }
