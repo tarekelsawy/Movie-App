@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/genres.dart';
 
 class MovieDetailsEntity extends Equatable {
@@ -21,8 +20,6 @@ class MovieDetailsEntity extends Equatable {
     required this.runtime,
     required this.voteAverage,
   });
-
-  
 
   @override
   List<Object> get props {

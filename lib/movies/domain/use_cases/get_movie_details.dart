@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-
 import 'package:movie_app_with_clean_architecture/core/error/failure.dart';
 import 'package:movie_app_with_clean_architecture/core/usecase/base_usecase.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_details_entity.dart';
@@ -14,8 +13,7 @@ class UseCaseGetMovieDetails
   UseCaseGetMovieDetails(this.baseMovieRepo);
   @override
   Future<Either<Failure, MovieDetailsEntity>> call(parameter  ) async {
-    print('usecase details');
-    print('usecase details${parameter.id}');
+
     return await baseMovieRepo.getMovieDetails(parameter.id);
   }
 }

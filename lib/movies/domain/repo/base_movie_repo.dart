@@ -8,7 +8,7 @@ abstract class BaseMovieRepo {
   Future<Either<Failure, List<MovieEntity>>> getPlayingNowMovies();
   Future<Either<Failure, List<MovieEntity>>> getPopularMovies();
   Future<Either<Failure, List<MovieEntity>>> getTopRatedMovies();
-  Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(int movieID);
+  Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(int movieId);
   Future<Either<Failure, List<MovieRecommendationsEntity>>>
       getMovieRecommendations(int movieId);
 }

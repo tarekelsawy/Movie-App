@@ -19,10 +19,11 @@ class ServiceLocator {
         useCaseGetMovieDetails: getIt(),
         useCaseGetMovieRecommendations: getIt()));
     getIt.registerFactory(() => MovieBloc(
-        useCaseGetPlayingNowMovies: getIt(),
-        useCaseGetPopularMovies: getIt(),
-        useCaseGetTopRatedMovies: getIt(),
-        useCaseGetMovieDetails: getIt()));
+          useCaseGetPlayingNowMovies: getIt(),
+          useCaseGetPopularMovies: getIt(),
+          useCaseGetTopRatedMovies: getIt(),
+          // useCaseGetMovieDetails: getIt(),
+        ));
 
     ///USE CASE
     getIt.registerLazySingleton(() => UseCaseGetPlayingNowMovies(getIt()));

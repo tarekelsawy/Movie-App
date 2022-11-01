@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:movie_app_with_clean_architecture/core/error/exceptions.dart';
 import 'package:movie_app_with_clean_architecture/core/network/error_message_model.dart';
@@ -5,13 +7,15 @@ import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart
 import 'package:movie_app_with_clean_architecture/movies/data/model/movie_details_model.dart';
 import 'package:movie_app_with_clean_architecture/movies/data/model/movie_model.dart';
 import 'package:movie_app_with_clean_architecture/movies/data/model/movie_recommendations_model.dart';
+import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_movie_recommendations.dart';
 
 abstract class BaseRemoteMovieDataSource {
   Future<List<MovieModel>> getPlayingNowMovies();
   Future<List<MovieModel>> getPopularMovies();
   Future<List<MovieModel>> getTopRatedMovies();
   Future<MovieDetailsModel> getMovieDetails(int movieId);
-  Future<List<MovieRecommendationsModel>> getMovieRecommendations(int movieId);
+  Future<List<MovieRecommendationsModel>> getMovieRecommendations(
+      MovieRecommendationsParameter parameter);
 }
 
 class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
@@ -19,9 +23,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   Future<List<MovieModel>> getPlayingNowMovies() async {
     print('data source details');
     var response = await Dio().get(
-      Constances.baseURL + Constances.endPointPlayingNow,
+      Constants.baseURL + Constants.endPointPlayingNow,
       queryParameters: {
-        'api_key': Constances.apiKey,
+        'api_key': Constants.apiKey,
       },
     ).catchError((onError) {
       print('catch error ${onError.toString()}');
@@ -41,9 +45,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   @override
   Future<List<MovieModel>> getPopularMovies() async {
     var response = await Dio().get(
-      Constances.baseURL + Constances.endPointPopular,
+      Constants.baseURL + Constants.endPointPopular,
       queryParameters: {
-        'api_key': Constances.apiKey,
+        'api_key': Constants.apiKey,
       },
     ).catchError((onError) {
       print('onPopularError:${onError.toString()}');
@@ -60,9 +64,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   @override
   Future<List<MovieModel>> getTopRatedMovies() async {
     var response = await Dio().get(
-      Constances.baseURL + Constances.endPointTopRated,
+      Constants.baseURL + Constants.endPointTopRated,
       queryParameters: {
-        'api_key': Constances.apiKey,
+        'api_key': Constants.apiKey,
       },
     ).catchError((onError) {
       print('onPopularError:${onError.toString()}');
@@ -79,15 +83,15 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   @override
   Future<MovieDetailsModel> getMovieDetails(int movieId) async {
     final result = await Dio().get(
-      Constances.getMovieDetailsPath(movieId),
+      Constants.getMovieDetailsPath(movieId),
       queryParameters: {
-        'api_key': Constances.apiKey,
+        'api_key': Constants.apiKey,
       },
     ).catchError((onError) {
       print('on details Error:${onError.toString()}');
     });
     if (result.statusCode == 200) {
-      print('success 200');
+      log('success 200 data source movie details');
       return MovieDetailsModel.fromJson(result.data);
     } else {
       throw ServerException(MovieErrorMessageModel.fromJson(result.data));
@@ -96,16 +100,16 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
 
   @override
   Future<List<MovieRecommendationsModel>> getMovieRecommendations(
-      int movieId) async {
+      MovieRecommendationsParameter parameter) async {
     final result = await Dio().get(
-      Constances.getMovieRecommendationsPath(movieId),
+      Constants.getMovieRecommendationsPath(parameter.id),
       queryParameters: {
-        'api_key': Constances.apiKey,
+        'api_key': Constants.apiKey,
       },
     );
 
     if (result.statusCode == 200) {
-      print('status code 200');
+      log('status code 200 data source recommendation');
       return (result.data['results'] as List)
           .map((recommend) => MovieRecommendationsModel.fromJson(recommend))
           .toList();

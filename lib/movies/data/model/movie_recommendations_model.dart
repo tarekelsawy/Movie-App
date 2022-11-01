@@ -5,10 +5,9 @@ class MovieRecommendationsModel extends MovieRecommendationsEntity {
       {required super.id, required super.backdropPath});
 
   factory MovieRecommendationsModel.fromJson(Map<String, dynamic> json) {
-    print('json okay');
     return MovieRecommendationsModel(
       id: json['id'],
-      backdropPath: json['backdrop_path'].toString(),
+      backdropPath: json['backdrop_path'] ?? '/zmpvhQQ8HcwwD1MujPZIEpT92GW.jpg',
     );
   }
 }

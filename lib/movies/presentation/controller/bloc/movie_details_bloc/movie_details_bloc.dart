@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_movie_details.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_movie_recommendations.dart';
@@ -11,7 +11,9 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/controller
 part 'movie_details_event.dart';
 
 class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsStates> {
+  static MovieDetailsBloc get(context) => BlocProvider.of(context);
   final UseCaseGetMovieDetails useCaseGetMovieDetails;
+
   final UseCaseGetMovieRecommendations useCaseGetMovieRecommendations;
   MovieDetailsBloc({
     required this.useCaseGetMovieRecommendations,
@@ -23,7 +25,6 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsStates> {
 
   FutureOr<void> _getMovieDetails(
       OnGetMovieDetailsEvent event, Emitter<MovieDetailsStates> emit) async {
-    print('movie details in bloc');
     final result =
         await useCaseGetMovieDetails(MovieDetailsParameter(id: event.movieId));
     result.fold((failure) {
@@ -33,8 +34,6 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsStates> {
         requestStates: RequestStates.error,
       ));
     }, (movieDetails) {
-      log('success fold');
-      log(movieDetails.toString());
       emit(
         StateGetMovieDetails(
           movieDetails: movieDetails,
@@ -57,9 +56,6 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsStates> {
         ),
       ),
       (r) {
-        for (var item in r) {
-          print(item);
-        }
         emit(
           StateGetMovieRecommendations(
             requestStates: RequestStates.success,

@@ -13,7 +13,7 @@ class UseCaseGetMovieRecommendations extends BaseMovieUsecase<
 
   @override
   Future<Either<Failure, List<MovieRecommendationsEntity>>> call(
-      parameter) async {
+      MovieRecommendationsParameter parameter) async {
     return await baseMovieRepo.getMovieRecommendations(parameter.id);
   }
 }

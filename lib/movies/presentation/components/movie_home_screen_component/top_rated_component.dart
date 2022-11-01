@@ -1,13 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/shared_widget.dart';
 
-import '../controller/bloc/movies_bloc.dart';
-import '../controller/bloc/movies_states.dart';
+import '../../controller/bloc/movies_bloc.dart';
+import '../../controller/bloc/movies_states.dart';
 
 class TopRatedComponent extends StatelessWidget {
   const TopRatedComponent({super.key});
@@ -23,7 +21,7 @@ class TopRatedComponent extends StatelessWidget {
           case RequestStates.loading:
             return const LoadingWidgetHandling();
           case RequestStates.success:
-            return  SuccessWidgetHandling(state:state);
+            return SuccessWidgetHandling(state: state);
           case RequestStates.error:
             return const ErrorWidgetHandling();
         }

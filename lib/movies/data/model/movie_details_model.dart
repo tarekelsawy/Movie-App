@@ -13,9 +13,8 @@ class MovieDetailsModel extends MovieDetailsEntity {
     required super.voteAverage,
   });
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) {
-    print('details json model');
     return MovieDetailsModel(
-      backdropPath: json['backdrop_path'],
+      backdropPath: json['backdrop_path'] ?? '/zmpvhQQ8HcwwD1MujPZIEpT92GW.jpg',
       genres: (json['genres'] as List)
           .map((genre) => Genres.fromJson(genre))
           .toList(),

@@ -13,12 +13,12 @@ class MovieBloc extends Bloc<MoviesEvents, MoviesStates> {
   final UseCaseGetPlayingNowMovies useCaseGetPlayingNowMovies;
   final UseCaseGetPopularMovies useCaseGetPopularMovies;
   final UseCaseGetTopRatedMovies useCaseGetTopRatedMovies;
-  final UseCaseGetMovieDetails useCaseGetMovieDetails;
+  // final UseCaseGetMovieDetails useCaseGetMovieDetails;
   MovieBloc({
     required this.useCaseGetPlayingNowMovies,
     required this.useCaseGetPopularMovies,
     required this.useCaseGetTopRatedMovies,
-    required this.useCaseGetMovieDetails,
+    // required this.useCaseGetMovieDetails,
   }) : super(StateInitial()) {
     on<EventGetPlayingNowMovies>(_getPlayingNow);
     on<EventGetPopularMovies>(_getPopular);

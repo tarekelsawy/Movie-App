@@ -1,11 +1,10 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_entity.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_states.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movies_home_screen.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ErrorWidgetHandling extends StatelessWidget {
@@ -21,7 +20,6 @@ class ErrorWidgetHandling extends StatelessWidget {
   }
 }
 
-
 class LoadingWidgetHandling extends StatelessWidget {
   const LoadingWidgetHandling({super.key});
 
@@ -36,7 +34,6 @@ class LoadingWidgetHandling extends StatelessWidget {
     );
   }
 }
-
 
 class SuccessWidgetHandling extends StatelessWidget {
   final MoviesStates state;
@@ -64,7 +61,6 @@ class SuccessWidgetHandling extends StatelessWidget {
   }
 }
 
-
 class ItemListView extends StatelessWidget {
   final MovieEntity item;
   const ItemListView({
@@ -79,28 +75,37 @@ class ItemListView extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.31,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
-        child: CachedNetworkImage(
-            imageUrl: Constances.getUrl(item.backDropPath),
-            fit: BoxFit.cover,
-            placeholder: (context, url) {
-              return Shimmer.fromColors(
-                period: const Duration(milliseconds: 500),
-                baseColor: Colors.grey,
-                highlightColor: Colors.white,
-                enabled: true,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.31,
-                  height: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  decoration: BoxDecoration(
-                    color: Colors.black38,
-                    borderRadius: BorderRadius.circular(8.0),
+        child: GestureDetector(
+          onTap: () {
+            navigateTo(MovieDetailsScreen(movieId: item.id), context);
+          },
+          child: CachedNetworkImage(
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              imageUrl: Constants.getImageUrl(item.backDropPath),
+              fit: BoxFit.cover,
+              placeholder: (context, url) {
+                return Shimmer.fromColors(
+                  period: const Duration(milliseconds: 500),
+                  baseColor: Colors.grey,
+                  highlightColor: Colors.white,
+                  enabled: true,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.31,
+                    height: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    decoration: BoxDecoration(
+                      color: Colors.black38,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
+        ),
       ),
     );
   }
 }
 
+void navigateTo(Widget screen, BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+}

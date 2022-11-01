@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/components/shared_widget.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_states.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PlayingNowComponent extends StatelessWidget {
@@ -25,7 +27,7 @@ class PlayingNowComponent extends StatelessWidget {
             widget = const LoadingWidget();
             break;
           case RequestStates.success:
-            widget = SuccesWidget(
+            widget = SuccessWidget(
               state: state,
             );
             break;
@@ -74,10 +76,10 @@ class LoadingWidget extends StatelessWidget {
   }
 }
 
-class SuccesWidget extends StatelessWidget {
+class SuccessWidget extends StatelessWidget {
   final MoviesStates state;
 
-  const SuccesWidget({
+  const SuccessWidget({
     super.key,
     required this.state,
   });
@@ -96,7 +98,13 @@ class SuccesWidget extends StatelessWidget {
         ),
         items: state.list.map((item) {
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              navigateTo(
+                  MovieDetailsScreen(
+                    movieId: item.id,
+                  ),
+                  context);
+            },
             child: Stack(
               children: [
                 ShaderMask(
@@ -111,19 +119,20 @@ class SuccesWidget extends StatelessWidget {
                   ).createShader(rect),
                   blendMode: BlendMode.dstOut,
                   child: CachedNetworkImage(
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                     placeholder: ((context, url) => Shimmer.fromColors(
                           period: const Duration(milliseconds: 800),
                           baseColor: Colors.grey,
                           highlightColor: Colors.white,
                           child: Container(
                             height: MediaQuery.of(context).size.height * 0.425,
-                            decoration:const BoxDecoration(
-                            color: Colors.black38,
-                             
-                  ),
+                            decoration: const BoxDecoration(
+                              color: Colors.black38,
+                            ),
                           ),
                         )),
-                    imageUrl: Constances.getUrl(item.backDropPath),
+                    imageUrl: Constants.getImageUrl(item.backDropPath),
                     fit: BoxFit.cover,
                     height: MediaQuery.of(context).size.height * 0.425,
                   ),
