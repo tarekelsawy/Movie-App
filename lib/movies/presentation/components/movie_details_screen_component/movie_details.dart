@@ -3,9 +3,10 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
+import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
-import 'package:movie_app_with_clean_architecture/movies/domain/entities/genres.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_details_entity.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/components/shared_widget.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_details_bloc/movie_details_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_details_bloc/movie_details_state.dart';
 import 'package:shimmer/shimmer.dart';
@@ -224,7 +225,7 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                _setupDate(model.releaseDate),
+                                setupDate(model.releaseDate),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2!
@@ -259,7 +260,7 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                           SizedBox(
                             width: 60.0,
                             child: Text(
-                              _setupTime(model.runtime),
+                              setupTime(model.runtime),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText2!
@@ -277,8 +278,8 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                     ),
                     ExpandableText(
                       model.overview,
-                      expandText: 'show more',
-                      collapseText: 'show less',
+                      expandText: AppStrings.showMore,
+                      collapseText: AppStrings.showLess,
                       maxLines: 2,
                       linkColor: Colors.lightBlue,
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
@@ -289,7 +290,7 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                       height: 15.0,
                     ),
                     Text(
-                      _setupGenres(model.genres),
+                      setupGenres(model.genres),
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             color: const Color(0xffa5a5a9),
                             fontWeight: FontWeight.w900,
@@ -301,7 +302,7 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                       height: 30.0,
                     ),
                     Text(
-                      'MORE LIKE THIS',
+                      AppStrings.moreLikeThis,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: 16.0,
                           ),
@@ -333,23 +334,4 @@ class MovieDetailsBoxComponent extends StatelessWidget {
       },
     );
   }
-}
-
-String _setupDate(String date) {
-  return date.split('-')[0];
-}
-
-String _setupTime(int time) {
-  return time >= 60
-      ? '${(time ~/ 60)}h ${time % 60 == 0 ? '' : '${time % 60}m'}'
-      : '${time % 60}m';
-}
-
-String _setupGenres(List<Genres> genres) {
-  String s = 'Genres: ';
-  int ln = genres.length;
-  for (int i = 0; i < ln; ++i) {
-    s += genres[i].name + (i == ln - 1 ? '' : ', ');
-  }
-  return s;
 }

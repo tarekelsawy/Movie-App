@@ -7,8 +7,8 @@ import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_mo
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_playing_now_movie_usecase.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_popular_movie_usecase.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_top_rated_movie_usecase.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_details_bloc/movie_details_bloc.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_bloc.dart';
 
 GetIt getIt = GetIt.instance;
 

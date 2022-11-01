@@ -1,13 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
-
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
-import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_movie_details.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_playing_now_movie_usecase.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_popular_movie_usecase.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_top_rated_movie_usecase.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_events.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_states.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_events.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
 
 class MovieBloc extends Bloc<MoviesEvents, MoviesStates> {
   final UseCaseGetPlayingNowMovies useCaseGetPlayingNowMovies;

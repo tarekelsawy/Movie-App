@@ -4,10 +4,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
+import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/shared_widget.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_bloc.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movies_states.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_bloc.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -90,7 +91,7 @@ class SuccessWidget extends StatelessWidget {
       duration: const Duration(milliseconds: 800),
       child: CarouselSlider(
         options: CarouselOptions(
-          height: MediaQuery.of(context).size.height * 0.44,
+          height: MediaQuery.of(context).size.height * 0.435,
           viewportFraction: 1.0,
           autoPlay: true,
           enableInfiniteScroll: true,
@@ -112,6 +113,7 @@ class SuccessWidget extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
+                      Colors.black,
                       Colors.transparent,
                       Colors.transparent,
                       Colors.black,
@@ -134,7 +136,7 @@ class SuccessWidget extends StatelessWidget {
                         )),
                     imageUrl: Constants.getImageUrl(item.backDropPath),
                     fit: BoxFit.cover,
-                    height: MediaQuery.of(context).size.height * 0.425,
+                    height: MediaQuery.of(context).size.height * 0.41,
                   ),
                 ),
                 Align(
@@ -143,7 +145,7 @@ class SuccessWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       top: 10.0,
                     ),
-                    height: MediaQuery.of(context).size.height * 0.12,
+                    height: MediaQuery.of(context).size.height * 0.14,
                     child: Column(
                       children: [
                         Row(
@@ -158,7 +160,7 @@ class SuccessWidget extends StatelessWidget {
                               width: 10.0,
                             ),
                             Text(
-                              'Playing Now',
+                              AppStrings.playingNow,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!

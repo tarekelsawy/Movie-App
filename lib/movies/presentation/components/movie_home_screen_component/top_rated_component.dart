@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/shared_widget.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
 
-import '../../controller/bloc/movies_bloc.dart';
-import '../../controller/bloc/movies_states.dart';
+import '../../controller/bloc/movie_bloc/movies_bloc.dart';
 
 class TopRatedComponent extends StatelessWidget {
   const TopRatedComponent({super.key});
