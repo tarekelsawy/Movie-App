@@ -7,13 +7,12 @@ import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_d
 import 'package:movie_app_with_clean_architecture/movies/domain/repo/base_movie_repo.dart';
 
 class UseCaseGetMovieDetails
-    extends BaseMovieUsecase<MovieDetailsEntity, MovieDetailsParameter> {
+    extends BaseMovieUseCase<MovieDetailsEntity, MovieDetailsParameter> {
   final BaseMovieRepo baseMovieRepo;
 
   UseCaseGetMovieDetails(this.baseMovieRepo);
   @override
-  Future<Either<Failure, MovieDetailsEntity>> call(parameter  ) async {
-
+  Future<Either<Failure, MovieDetailsEntity>> call(parameter) async {
     return await baseMovieRepo.getMovieDetails(parameter.id);
   }
 }

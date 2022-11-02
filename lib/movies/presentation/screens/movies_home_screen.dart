@@ -116,6 +116,12 @@ class MovieHomeScreen extends StatelessWidget {
             ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(
+            Icons.search,
+          ),
+        ),
       ),
     );
   }

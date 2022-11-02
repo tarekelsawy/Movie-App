@@ -11,4 +11,5 @@ abstract class BaseMovieRepo {
   Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(int movieId);
   Future<Either<Failure, List<MovieRecommendationsEntity>>>
       getMovieRecommendations(int movieId);
+  Future<Either<Failure, List<MovieEntity>>> getMovieSearch(String searchQuery);
 }

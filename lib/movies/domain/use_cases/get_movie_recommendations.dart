@@ -5,7 +5,7 @@ import 'package:movie_app_with_clean_architecture/core/usecase/base_usecase.dart
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_recommendations_entity.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/repo/base_movie_repo.dart';
 
-class UseCaseGetMovieRecommendations extends BaseMovieUsecase<
+class UseCaseGetMovieRecommendations extends BaseMovieUseCase<
     List<MovieRecommendationsEntity>, MovieRecommendationsParameter> {
   final BaseMovieRepo baseMovieRepo;
 

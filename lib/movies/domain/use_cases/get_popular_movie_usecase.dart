@@ -5,11 +5,12 @@ import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_e
 import 'package:movie_app_with_clean_architecture/movies/domain/repo/base_movie_repo.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/use_cases/get_playing_now_movie_usecase.dart';
 
-class UseCaseGetPopularMovies extends BaseMovieUsecase<List<MovieEntity>,NoParameter> {
+class UseCaseGetPopularMovies
+    extends BaseMovieUseCase<List<MovieEntity>, NoParameter> {
   BaseMovieRepo baseMovieRepo;
   UseCaseGetPopularMovies(this.baseMovieRepo);
   @override
-  Future<Either<Failure,List<MovieEntity>>> call(parameter)async{
+  Future<Either<Failure, List<MovieEntity>>> call(parameter) async {
     return await baseMovieRepo.getPopularMovies();
   }
 }

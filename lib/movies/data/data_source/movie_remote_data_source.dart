@@ -16,6 +16,7 @@ abstract class BaseRemoteMovieDataSource {
   Future<MovieDetailsModel> getMovieDetails(int movieId);
   Future<List<MovieRecommendationsModel>> getMovieRecommendations(
       MovieRecommendationsParameter parameter);
+  Future<List<MovieModel>> getMovieSearch(String searchQuery);
 }
 
 class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
@@ -115,6 +116,24 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
           .toList();
     } else {
       throw ServerException(result.data);
+    }
+  }
+
+  @override
+  Future<List<MovieModel>> getMovieSearch(String searchQuery) async {
+    final result = await Dio().get(
+      Constants.getMovieSearch,
+      queryParameters: {
+        'api_key': Constants.apiKey,
+        'query': searchQuery,
+      },
+    );
+    if (result.statusCode == 200) {
+      return (result.data['results'] as List)
+          .map((movie) => MovieModel.fromJson(movie))
+          .toList();
+    } else {
+      throw ServerException(MovieErrorMessageModel.fromJson(result.data));
     }
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:movie_app_with_clean_architecture/core/error/exceptions.dart';
 import 'package:movie_app_with_clean_architecture/core/error/failure.dart';
@@ -62,9 +60,20 @@ class MovieRepo implements BaseMovieRepo {
   @override
   Future<Either<Failure, List<MovieRecommendationsEntity>>>
       getMovieRecommendations(int movieId) async {
-    log('success fold2');
     final result = await baseRemoteMovieDataSource
         .getMovieRecommendations(MovieRecommendationsParameter(movieId));
+    try {
+      return Right(result);
+    } on ServerException catch (serverException) {
+      return Left(
+          ServerFailure(serverException.movieErrorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<MovieEntity>>> getMovieSearch(
+      String searchQuery) async {
+    final result = await baseRemoteMovieDataSource.getMovieSearch(searchQuery);
     try {
       return Right(result);
     } on ServerException catch (serverException) {

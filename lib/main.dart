@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app_with_clean_architecture/core/services/service_locator.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/bloc_observer.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movies_home_screen.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_search_screen.dart';
 
 Future<void> main() async {
   Bloc.observer = MyBlocObserver();
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MovieHomeScreen(),
+      home: const MovieSearchScreen(),
     );
   }
 }
