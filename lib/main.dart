@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app_with_clean_architecture/core/services/service_locator.dart';
+import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/bloc_observer.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_search_screen.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movies_home_screen.dart';
 
 Future<void> main() async {
   Bloc.observer = MyBlocObserver();
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: AppStrings.appTitle,
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: const Color(0xff1e1e29),
@@ -25,15 +26,15 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
           bodyText1: TextStyle(
             color: Colors.white,
-            fontFamily: 'Righteous Regular',
+            fontFamily: AppStrings.bodyTextOneFontFamily,
           ),
           bodyText2: TextStyle(
             color: Colors.white,
-            fontFamily: 'Quicksand',
+            fontFamily: AppStrings.bodyTextTwoFontFamily,
           ),
         ),
       ),
-      home: const MovieSearchScreen(),
+      home: const MovieHomeScreen(),
     );
   }
 }

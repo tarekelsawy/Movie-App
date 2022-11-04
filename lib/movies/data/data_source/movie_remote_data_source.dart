@@ -121,7 +121,15 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
 
   @override
   Future<List<MovieModel>> getMovieSearch(String searchQuery) async {
-    final result = await Dio().get(
+    Dio dio = Dio();
+    dio.interceptors.add(LogInterceptor(
+      request: true,
+      requestBody: true,
+      requestHeader: true,
+      responseBody: true,
+      responseHeader: true,
+    ));
+    final result = await dio.get(
       Constants.getMovieSearch,
       queryParameters: {
         'api_key': Constants.apiKey,

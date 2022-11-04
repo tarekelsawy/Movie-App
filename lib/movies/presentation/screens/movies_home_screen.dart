@@ -8,6 +8,7 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/components
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/movie_home_screen_component/top_rated_component.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_events.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_search_screen.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/popular_movie_screen.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/top_rated_movie_screen.dart';
 import 'package:transparent_route/transparent_route.dart';
@@ -117,7 +118,13 @@ class MovieHomeScreen extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            pushScreen(
+              context,
+              const MovieSearchScreen(),
+              isTransparent: true,
+            );
+          },
           child: const Icon(
             Icons.search,
           ),
