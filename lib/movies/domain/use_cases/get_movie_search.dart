@@ -6,7 +6,7 @@ import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_e
 import 'package:movie_app_with_clean_architecture/movies/domain/repo/base_movie_repo.dart';
 
 class UseCaseGetMovieSearch
-    extends BaseMovieUseCase<List<MovieEntity>, MovieSearchParameter> {
+    extends BaseUseCase<List<MovieEntity>, MovieSearchParameter> {
   final BaseMovieRepo baseMovieRepo;
 
   UseCaseGetMovieSearch(this.baseMovieRepo);

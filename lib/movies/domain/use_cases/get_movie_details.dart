@@ -7,7 +7,7 @@ import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_d
 import 'package:movie_app_with_clean_architecture/movies/domain/repo/base_movie_repo.dart';
 
 class UseCaseGetMovieDetails
-    extends BaseMovieUseCase<MovieDetailsEntity, MovieDetailsParameter> {
+    extends BaseUseCase<MovieDetailsEntity, MovieDetailsParameter> {
   final BaseMovieRepo baseMovieRepo;
 
   UseCaseGetMovieDetails(this.baseMovieRepo);
