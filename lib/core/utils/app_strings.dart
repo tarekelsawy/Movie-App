@@ -1,5 +1,6 @@
 class AppStrings {
   static const String playingNow = 'Playing Now';
+  static const String onTheAir = 'ON THE AIR';
   static const String popular = 'Popular';
   static const String seeMore = 'See More >';
   static const String topRated = 'Top Rated';

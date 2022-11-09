@@ -1,15 +1,11 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/components/movie_home_screen_component/playing_now_components.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/components/movie_home_screen_component/popular_component.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/components/movie_home_screen_component/top_rated_component.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/screens/popular_movie_screen.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/screens/top_rated_movie_screen.dart';
-import 'package:transparent_route/transparent_route.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_on_the_air_components.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_popular_component.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_top_rated_component.dart';
 
-class MovieHomeScreen extends StatelessWidget {
-  const MovieHomeScreen({Key? key}) : super(key: key);
+class TvHomeScreen extends StatelessWidget {
+  const TvHomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +13,7 @@ class MovieHomeScreen extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const MoviePlayingNowComponent(),
+            const TvOnTheAirComponent(),
             Padding(
               padding: const EdgeInsets.only(
                 top: 20,
@@ -37,11 +33,12 @@ class MovieHomeScreen extends StatelessWidget {
                     height: 35.0,
                     child: InkWell(
                       onTap: () {
-                        pushScreen(
-                          context,
-                          const PopularMovieScreen(),
-                          isTransparent: true,
-                        );
+                        ///TODO
+                        // pushScreen(
+                        //   context,
+                        //   const PopularMovieScreen(),
+                        //   isTransparent: true,
+                        // );
                       },
                       child: Center(
                         child: Text(
@@ -57,7 +54,7 @@ class MovieHomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const MoviePopularComponent(),
+            const TvPopularComponent(),
             Padding(
               padding: const EdgeInsets.only(
                 top: 30,
@@ -77,11 +74,12 @@ class MovieHomeScreen extends StatelessWidget {
                     height: 35.0,
                     child: InkWell(
                       onTap: () {
-                        pushScreen(
-                          context,
-                          const TopRatedMovieScreen(),
-                          isTransparent: true,
-                        );
+                        ///TODO
+                        // pushScreen(
+                        //   context,
+                        //   const TopRatedMovieScreen(),
+                        //   isTransparent: true,
+                        // );
                       },
                       child: Center(
                         child: Text(
@@ -97,7 +95,7 @@ class MovieHomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const MovieTopRatedComponent(),
+            const TvTopRatedComponent(),
           ],
         ),
       ),

@@ -5,22 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
-import 'package:movie_app_with_clean_architecture/core/utils/component.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_bloc.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
+import 'package:movie_app_with_clean_architecture/tvs/domain/entities/tv_entity.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_bloc.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_states.dart';
 import 'package:shimmer/shimmer.dart';
 
-class MoviePlayingNowComponent extends StatelessWidget {
-  const MoviePlayingNowComponent({super.key});
+class TvOnTheAirComponent extends StatelessWidget {
+  const TvOnTheAirComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieBloc, MoviesStates>(
-      buildWhen: ((previous, current) {
-        return current is StateGetPlayingNowMovies ? true : false;
-      }),
+    return BlocBuilder<TvBloc, TvStates>(
       builder: (context, state) {
         late Widget widget;
         switch (state.requestStates) {
@@ -29,7 +25,7 @@ class MoviePlayingNowComponent extends StatelessWidget {
             break;
           case RequestStates.success:
             widget = SuccessWidget(
-              state: state,
+              list: state.tvOnTheAirList,
             );
             break;
           case RequestStates.error:
@@ -45,7 +41,7 @@ class MoviePlayingNowComponent extends StatelessWidget {
 }
 
 class ErrorWidget extends StatelessWidget {
-  final MoviesStates state;
+  final TvStates state;
   const ErrorWidget({super.key, required this.state});
 
   @override
@@ -78,11 +74,11 @@ class LoadingWidget extends StatelessWidget {
 }
 
 class SuccessWidget extends StatelessWidget {
-  final MoviesStates state;
+  final List<TvEntity> list;
 
   const SuccessWidget({
     super.key,
-    required this.state,
+    required this.list,
   });
 
   @override
@@ -97,14 +93,15 @@ class SuccessWidget extends StatelessWidget {
           enableInfiniteScroll: true,
           enlargeCenterPage: true,
         ),
-        items: state.list.map((item) {
+        items: list.map((item) {
           return GestureDetector(
             onTap: () {
-              navigateTo(
-                  MovieDetailsScreen(
-                    movieId: item.id,
-                  ),
-                  context);
+              ///todo
+              // navigateTo(
+              //     MovieDetailsScreen(
+              //       movieId: item.id,
+              //     ),
+              //     context);
             },
             child: Stack(
               children: [
@@ -134,7 +131,8 @@ class SuccessWidget extends StatelessWidget {
                             ),
                           ),
                         )),
-                    imageUrl: Constants.getImageUrl(item.backDropPath),
+                    imageUrl: Constants.getImageUrl(item.backdropPath ??
+                        '/hIZFG7MK4leU4axRFKJWqrjhmxZ.jpg'),
                     fit: BoxFit.cover,
                     height: MediaQuery.of(context).size.height * 0.41,
                   ),
@@ -160,7 +158,7 @@ class SuccessWidget extends StatelessWidget {
                               width: 10.0,
                             ),
                             Text(
-                              AppStrings.playingNow,
+                              AppStrings.onTheAir,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!
@@ -174,7 +172,7 @@ class SuccessWidget extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          item.title.toString(),
+                          item.name.toString(),
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
                                     fontSize: 20,

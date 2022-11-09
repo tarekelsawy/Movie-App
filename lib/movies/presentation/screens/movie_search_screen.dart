@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_with_clean_architecture/core/services/service_locator.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
+import 'package:movie_app_with_clean_architecture/core/utils/component.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_entity.dart';
-import 'package:movie_app_with_clean_architecture/movies/presentation/components/shared_widget.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_search_bloc/movie_search_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_search_bloc/movie_search_event.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_search_bloc/movie_search_state.dart';
@@ -17,7 +17,8 @@ class MovieSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<MovieSearchBloc>(
-      create: (BuildContext buildContext) => getIt<MovieSearchBloc>(),
+      create: (BuildContext buildContext) =>
+          movieServiceLocator<MovieSearchBloc>(),
       child: BlocBuilder<MovieSearchBloc, MovieSearchState>(
         builder: (context, state) {
           List<MovieEntity> movie = MovieSearchBloc.get(context).state.movies;

@@ -13,7 +13,8 @@ class TopRatedMovieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<MovieBloc>()..add(EventGetTopRatedMovies()),
+      create: (context) =>
+          movieServiceLocator<MovieBloc>()..add(EventGetTopRatedMovies()),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -30,7 +31,7 @@ class TopRatedMovieScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: state.list.length,
                 itemBuilder: (context, index) =>
-                    ItemBuilderForPopularAndTopRated(
+                    MovieItemBuilderForPopularAndTopRated(
                   movie: state.list[index],
                 ),
               ),

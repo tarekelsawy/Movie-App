@@ -14,7 +14,7 @@ class MovieDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<MovieDetailsBloc>(
-      create: (context) => getIt<MovieDetailsBloc>()
+      create: (context) => movieServiceLocator<MovieDetailsBloc>()
         ..add(OnGetMovieDetailsEvent(movieId))
         ..add(OnGetMovieRecommendationsEvent(movieId)),
       child: FadeInUp(

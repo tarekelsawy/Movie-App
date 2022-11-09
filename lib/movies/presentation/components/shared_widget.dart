@@ -2,43 +2,15 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/api_constances.dart';
-import 'package:movie_app_with_clean_architecture/movies/domain/entities/genres.dart';
+import 'package:movie_app_with_clean_architecture/core/utils/component.dart';
 import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_entity.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ErrorWidgetHandling extends StatelessWidget {
-  const ErrorWidgetHandling({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.2,
-      width: double.infinity,
-      child: const Center(child: CircularProgressIndicator()),
-    );
-  }
-}
-
-class LoadingWidgetHandling extends StatelessWidget {
-  const LoadingWidgetHandling({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.2,
-      width: double.infinity,
-      child: const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
-}
-
-class SuccessWidgetHandling extends StatelessWidget {
+class MovieSuccessWidgetHandling extends StatelessWidget {
   final MoviesStates state;
-  const SuccessWidgetHandling({
+  const MovieSuccessWidgetHandling({
     Key? key,
     required this.state,
   }) : super(key: key);
@@ -54,7 +26,7 @@ class SuccessWidgetHandling extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: state.list.length,
           itemBuilder: (context, index) {
-            return ItemListView(item: state.list[index]);
+            return MovieItemListView(item: state.list[index]);
           },
         ),
       ),
@@ -62,9 +34,9 @@ class SuccessWidgetHandling extends StatelessWidget {
   }
 }
 
-class ItemListView extends StatelessWidget {
+class MovieItemListView extends StatelessWidget {
   final MovieEntity item;
-  const ItemListView({
+  const MovieItemListView({
     super.key,
     required this.item,
   });
@@ -107,13 +79,9 @@ class ItemListView extends StatelessWidget {
   }
 }
 
-void navigateTo(Widget screen, BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
-}
-
-class ItemBuilderForPopularAndTopRated extends StatelessWidget {
+class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
   final MovieEntity movie;
-  const ItemBuilderForPopularAndTopRated({Key? key, required this.movie})
+  const MovieItemBuilderForPopularAndTopRated({Key? key, required this.movie})
       : super(key: key);
 
   @override
@@ -242,23 +210,4 @@ class ItemBuilderForPopularAndTopRated extends StatelessWidget {
       ),
     );
   }
-}
-
-String setupDate(String date) {
-  return date.split('-')[0];
-}
-
-String setupTime(int time) {
-  return time >= 60
-      ? '${(time ~/ 60)}h ${time % 60 == 0 ? '' : '${time % 60}m'}'
-      : '${time % 60}m';
-}
-
-String setupGenres(List<Genres> genres) {
-  String s = 'Genres: ';
-  int ln = genres.length;
-  for (int i = 0; i < ln; ++i) {
-    s += genres[i].name + (i == ln - 1 ? '' : ', ');
-  }
-  return s;
 }
