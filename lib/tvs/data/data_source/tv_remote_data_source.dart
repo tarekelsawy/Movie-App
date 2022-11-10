@@ -15,8 +15,8 @@ class RemoteTvDataSource extends BaseRemoteTvDataSource {
   @override
   Future<List<TvModel>> getOnTheAirTv() async {
     final result =
-        await Dio().get(Constants.getTvOnTheAirUrl, queryParameters: {
-      'api_key': Constants.apiKey,
+        await Dio().get(ApiConstants.getTvOnTheAirUrl, queryParameters: {
+      'api_key': ApiConstants.apiKey,
     });
     if (result.statusCode == 200) {
       return (result.data['results'] as List)
@@ -29,8 +29,9 @@ class RemoteTvDataSource extends BaseRemoteTvDataSource {
 
   @override
   Future<List<TvModel>> getPopularTv() async {
-    final result = await Dio().get(Constants.getTvPopularUrl, queryParameters: {
-      'api_key': Constants.apiKey,
+    final result =
+        await Dio().get(ApiConstants.getTvPopularUrl, queryParameters: {
+      'api_key': ApiConstants.apiKey,
     });
     if (result.statusCode == 200) {
       return (result.data['results'] as List)
@@ -44,8 +45,8 @@ class RemoteTvDataSource extends BaseRemoteTvDataSource {
   @override
   Future<List<TvModel>> getTopRatedTv() async {
     final result =
-        await Dio().get(Constants.getTvTopRatedUrl, queryParameters: {
-      'api_key': Constants.apiKey,
+        await Dio().get(ApiConstants.getTvTopRatedUrl, queryParameters: {
+      'api_key': ApiConstants.apiKey,
     });
     if (result.statusCode == 200) {
       return (result.data['results'] as List)

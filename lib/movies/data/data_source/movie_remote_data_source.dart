@@ -24,9 +24,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   Future<List<MovieModel>> getPlayingNowMovies() async {
     print('data source details');
     var response = await Dio().get(
-      Constants.baseURL + Constants.endPointPlayingNow,
+      ApiConstants.baseURL + ApiConstants.endPointPlayingNow,
       queryParameters: {
-        'api_key': Constants.apiKey,
+        'api_key': ApiConstants.apiKey,
       },
     ).catchError((onError) {
       print('catch error ${onError.toString()}');
@@ -46,9 +46,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   @override
   Future<List<MovieModel>> getPopularMovies() async {
     var response = await Dio().get(
-      Constants.baseURL + Constants.endPointPopular,
+      ApiConstants.baseURL + ApiConstants.endPointPopular,
       queryParameters: {
-        'api_key': Constants.apiKey,
+        'api_key': ApiConstants.apiKey,
       },
     ).catchError((onError) {
       print('onPopularError:${onError.toString()}');
@@ -65,9 +65,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   @override
   Future<List<MovieModel>> getTopRatedMovies() async {
     var response = await Dio().get(
-      Constants.baseURL + Constants.endPointTopRated,
+      ApiConstants.baseURL + ApiConstants.endPointTopRated,
       queryParameters: {
-        'api_key': Constants.apiKey,
+        'api_key': ApiConstants.apiKey,
       },
     ).catchError((onError) {
       print('onPopularError:${onError.toString()}');
@@ -84,9 +84,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   @override
   Future<MovieDetailsModel> getMovieDetails(int movieId) async {
     final result = await Dio().get(
-      Constants.getMovieDetailsPath(movieId),
+      ApiConstants.getMovieDetailsPath(movieId),
       queryParameters: {
-        'api_key': Constants.apiKey,
+        'api_key': ApiConstants.apiKey,
       },
     ).catchError((onError) {
       print('on details Error:${onError.toString()}');
@@ -103,9 +103,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
   Future<List<MovieRecommendationsModel>> getMovieRecommendations(
       MovieRecommendationsParameter parameter) async {
     final result = await Dio().get(
-      Constants.getMovieRecommendationsPath(parameter.id),
+      ApiConstants.getMovieRecommendationsPath(parameter.id),
       queryParameters: {
-        'api_key': Constants.apiKey,
+        'api_key': ApiConstants.apiKey,
       },
     );
 
@@ -130,9 +130,9 @@ class RemoteMovieDataSource implements BaseRemoteMovieDataSource {
       responseHeader: true,
     ));
     final result = await dio.get(
-      Constants.getMovieSearch,
+      ApiConstants.getMovieSearch,
       queryParameters: {
-        'api_key': Constants.apiKey,
+        'api_key': ApiConstants.apiKey,
         'query': searchQuery,
       },
     );

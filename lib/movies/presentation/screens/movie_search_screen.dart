@@ -9,11 +9,13 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/controller
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_search_bloc/movie_search_event.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_search_bloc/movie_search_state.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/screens/home_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
+// ignore: must_be_immutable
 class MovieSearchScreen extends StatelessWidget {
-  const MovieSearchScreen({Key? key}) : super(key: key);
-
+  MovieSearchScreen({Key? key}) : super(key: key);
+  TextEditingController textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocProvider<MovieSearchBloc>(
@@ -30,10 +32,13 @@ class MovieSearchScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextFormField(
+                    controller: textController,
                     onChanged: (String query) {
-                      Future.delayed(const Duration(milliseconds: 100)).then(
-                          (valueFuture) => MovieSearchBloc.get(context)
-                              .add(OnEventGetMovieSearch(query)));
+                      if (query.isNotEmpty) {
+                        Future.delayed(const Duration(milliseconds: 100)).then(
+                            (valueFuture) => MovieSearchBloc.get(context)
+                                .add(OnEventGetMovieSearch(query)));
+                      }
                     },
                     cursorColor: Colors.white,
                     cursorWidth: 1,
@@ -57,6 +62,22 @@ class MovieSearchScreen extends StatelessWidget {
                       prefixIcon: const Icon(
                         Icons.search,
                         color: Color(0xff969494),
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          if (textController.text.isEmpty) {
+                            navigateTo(const HomeScreen(), context);
+                          } else if (textController.text.isNotEmpty) {
+                            textController.text = '';
+                            context
+                                .read<MovieSearchBloc>()
+                                .add(OnEventClearTextField());
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.clear,
+                          color: Color(0xff969494),
+                        ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
@@ -122,7 +143,7 @@ class ItemBuilder extends StatelessWidget {
               height: double.infinity,
               width: 50,
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              imageUrl: Constants.getImageUrl(movie.backDropPath),
+              imageUrl: ApiConstants.getImageUrl(movie.backDropPath),
               placeholder: (context, url) => Shimmer.fromColors(
                 baseColor: Colors.grey,
                 highlightColor: Colors.white,

@@ -3,6 +3,9 @@ import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
 import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_on_the_air_components.dart';
 import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_popular_component.dart';
 import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_top_rated_component.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/screens/popular_tv_screen.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/screens/top_rated_tv_screen.dart';
+import 'package:transparent_route/transparent_route.dart';
 
 class TvHomeScreen extends StatelessWidget {
   const TvHomeScreen({Key? key}) : super(key: key);
@@ -34,11 +37,11 @@ class TvHomeScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         ///TODO
-                        // pushScreen(
-                        //   context,
-                        //   const PopularMovieScreen(),
-                        //   isTransparent: true,
-                        // );
+                        pushScreen(
+                          context,
+                          const PopularTvScreen(),
+                          isTransparent: true,
+                        );
                       },
                       child: Center(
                         child: Text(
@@ -74,12 +77,11 @@ class TvHomeScreen extends StatelessWidget {
                     height: 35.0,
                     child: InkWell(
                       onTap: () {
-                        ///TODO
-                        // pushScreen(
-                        //   context,
-                        //   const TopRatedMovieScreen(),
-                        //   isTransparent: true,
-                        // );
+                        pushScreen(
+                          context,
+                          const TopRatedTvScreen(),
+                          isTransparent: true,
+                        );
                       },
                       child: Center(
                         child: Text(

@@ -94,7 +94,7 @@ class MovieDetailsComponent extends StatelessWidget {
                     fit: BoxFit.cover,
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
-                    imageUrl: Constants.getImageUrl(model.backdropPath),
+                    imageUrl: ApiConstants.getImageUrl(model.backdropPath),
                     placeholder: (context, url) => Shimmer.fromColors(
                       baseColor: Colors.grey,
                       highlightColor: Colors.white,

@@ -26,7 +26,9 @@ class TvSuccessWidgetHandling extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeIn(
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(
+        seconds: 1,
+      ),
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.2,
         child: ListView.builder(
@@ -62,7 +64,7 @@ class TvItemListView extends StatelessWidget {
           },
           child: CachedNetworkImage(
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              imageUrl: Constants.getImageUrl(
+              imageUrl: ApiConstants.getImageUrl(
                   item.posterPath ?? '/hIZFG7MK4leU4axRFKJWqrjhmxZ.jpg'),
               fit: BoxFit.cover,
               placeholder: (context, url) {
@@ -116,7 +118,7 @@ class TvItemBuilderForPopularAndTopRated extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.31,
                 fit: BoxFit.cover,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
-                imageUrl: Constants.getImageUrl(
+                imageUrl: ApiConstants.getImageUrl(
                     tv.posterPath ?? '/hIZFG7MK4leU4axRFKJWqrjhmxZ.jpg'),
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: Colors.grey,

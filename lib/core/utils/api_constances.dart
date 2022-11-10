@@ -1,4 +1,4 @@
-class Constants {
+class ApiConstants {
   static const baseURL = 'https://api.themoviedb.org/3/';
   static const endPointPlayingNow = 'movie/now_playing';
   static const endPointPopular = 'movie/popular';

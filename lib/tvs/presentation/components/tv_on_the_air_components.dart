@@ -84,7 +84,7 @@ class SuccessWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeIn(
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(seconds: 1),
       child: CarouselSlider(
         options: CarouselOptions(
           height: MediaQuery.of(context).size.height * 0.435,
@@ -131,7 +131,7 @@ class SuccessWidget extends StatelessWidget {
                             ),
                           ),
                         )),
-                    imageUrl: Constants.getImageUrl(item.backdropPath ??
+                    imageUrl: ApiConstants.getImageUrl(item.backdropPath ??
                         '/hIZFG7MK4leU4axRFKJWqrjhmxZ.jpg'),
                     fit: BoxFit.cover,
                     height: MediaQuery.of(context).size.height * 0.41,

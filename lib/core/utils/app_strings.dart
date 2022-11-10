@@ -9,6 +9,7 @@ class AppStrings {
   static const String moreLikeThis = 'MORE LIKE THIS';
   static const String topRatedMovies = 'Top Rated Movies';
   static const String popularMovies = 'Popular Movies';
+  static const String popularTvs = 'Popular Tvs';
   static const String bodyTextTwoFontFamily = 'Quicksand';
   static const String bodyTextOneFontFamily = 'Righteous Regular';
   static const String appTitle = 'Movie App';

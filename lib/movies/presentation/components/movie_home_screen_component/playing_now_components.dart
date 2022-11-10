@@ -134,7 +134,7 @@ class SuccessWidget extends StatelessWidget {
                             ),
                           ),
                         )),
-                    imageUrl: Constants.getImageUrl(item.backDropPath),
+                    imageUrl: ApiConstants.getImageUrl(item.backDropPath),
                     fit: BoxFit.cover,
                     height: MediaQuery.of(context).size.height * 0.41,
                   ),

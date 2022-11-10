@@ -54,7 +54,7 @@ class MovieItemListView extends StatelessWidget {
           },
           child: CachedNetworkImage(
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              imageUrl: Constants.getImageUrl(item.backDropPath),
+              imageUrl: ApiConstants.getImageUrl(item.backDropPath),
               fit: BoxFit.cover,
               placeholder: (context, url) {
                 return Shimmer.fromColors(
@@ -107,7 +107,7 @@ class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.31,
                 fit: BoxFit.cover,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
-                imageUrl: Constants.getImageUrl(movie.backDropPath),
+                imageUrl: ApiConstants.getImageUrl(movie.backDropPath),
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: Colors.grey,
                   highlightColor: Colors.white,

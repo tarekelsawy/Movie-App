@@ -75,8 +75,8 @@ class MovieRecommendationsComponent extends StatelessWidget {
                               context);
                         },
                         child: CachedNetworkImage(
-                          imageUrl:
-                              Constants.getImageUrl(model[index].backdropPath),
+                          imageUrl: ApiConstants.getImageUrl(
+                              model[index].backdropPath),
                           fit: BoxFit.cover,
                           placeholder: (BuildContext context, String url) {
                             return Shimmer.fromColors(

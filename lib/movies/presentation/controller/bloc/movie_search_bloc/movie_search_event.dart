@@ -12,3 +12,8 @@ class OnEventGetMovieSearch extends MovieSearchEvent {
   @override
   List<Object> get props => [searchQuery];
 }
+
+class OnEventClearTextField extends MovieSearchEvent {
+  @override
+  List<Object> get props => [];
+}

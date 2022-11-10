@@ -9,8 +9,10 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/controller
 
 class MovieSearchBloc extends Bloc<MovieSearchEvent, MovieSearchState> {
   final UseCaseGetMovieSearch useCaseGetMovieSearch;
+
   MovieSearchBloc(this.useCaseGetMovieSearch) : super(MovieSearchState()) {
     on<OnEventGetMovieSearch>(_getMovieSearch);
+    on<OnEventClearTextField>(_clearTextField);
   }
 
   static MovieSearchBloc get(BuildContext context) =>
@@ -36,5 +38,10 @@ class MovieSearchBloc extends Bloc<MovieSearchEvent, MovieSearchState> {
         ),
       );
     });
+  }
+
+  FutureOr<void> _clearTextField(
+      OnEventClearTextField event, Emitter<MovieSearchState> emit) {
+    emit(StateClearTextField());
   }
 }
