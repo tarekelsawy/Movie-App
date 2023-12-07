@@ -11,10 +11,11 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/controller
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:movie_app_with_clean_architecture/tvs/presentation/screens/home_screen.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 // ignore: must_be_immutable
 class MovieSearchScreen extends StatelessWidget {
-  MovieSearchScreen({Key? key}) : super(key: key);
+  MovieSearchScreen({super.key});
   TextEditingController textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -42,8 +43,8 @@ class MovieSearchScreen extends StatelessWidget {
                     },
                     cursorColor: Colors.white,
                     cursorWidth: 1,
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontSize: 20.0,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 15.sp,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -51,8 +52,8 @@ class MovieSearchScreen extends StatelessWidget {
                       border: InputBorder.none,
                       hintText: 'Search for a Movie eg.The Notebook',
                       hintStyle:
-                          Theme.of(context).textTheme.bodyText2!.copyWith(
-                                fontSize: 18.0,
+                          Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                fontSize: 15.sp,
                                 color: const Color(0xff969494),
                               ),
                       filled: true,
@@ -115,7 +116,7 @@ class MovieSearchScreen extends StatelessWidget {
 
 class ItemBuilder extends StatelessWidget {
   final MovieEntity movie;
-  const ItemBuilder({Key? key, required this.movie}) : super(key: key);
+  const ItemBuilder({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -127,11 +128,11 @@ class ItemBuilder extends StatelessWidget {
         color: const Color(0xff39394f),
       ),
       child: SizedBox(
-        height: 70,
+        height: 10.h,
         child: ListTile(
           title: Text(
             movie.title,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           onTap: () {
             navigateTo(MovieDetailsScreen(movieId: movie.id), context);
@@ -141,7 +142,7 @@ class ItemBuilder extends StatelessWidget {
             child: CachedNetworkImage(
               fit: BoxFit.cover,
               height: double.infinity,
-              width: 50,
+              width: 14.w,
               errorWidget: (context, url, error) => const Icon(Icons.error),
               imageUrl: ApiConstants.getImageUrl(movie.backDropPath),
               placeholder: (context, url) => Shimmer.fromColors(
@@ -157,21 +158,21 @@ class ItemBuilder extends StatelessWidget {
             ),
           ),
           trailing: SizedBox(
-            width: 50,
+            width: 12.w,
             child: Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.star,
                   color: Colors.amber,
-                  size: 20.0,
+                  size: 16.0.sp,
                 ),
-                const SizedBox(
-                  width: 3,
+                SizedBox(
+                  width: 1.w,
                 ),
                 Text(
                   (movie.voteAverage).toStringAsFixed(1),
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        fontSize: 13.0,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontSize: 10.5.sp,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -180,7 +181,7 @@ class ItemBuilder extends StatelessWidget {
           ),
           subtitle: Text(
             setupDate(movie.releaseDate),
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.grey,
                 ),

@@ -7,20 +7,21 @@ import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_e
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 class MovieSuccessWidgetHandling extends StatelessWidget {
   final MoviesStates state;
   const MovieSuccessWidgetHandling({
-    Key? key,
+    super.key,
     required this.state,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return FadeIn(
       duration: const Duration(milliseconds: 800),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.2,
+        height: 20.h,
         child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
@@ -45,7 +46,7 @@ class MovieItemListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
-      width: MediaQuery.of(context).size.width * 0.31,
+      width: 31.w,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: GestureDetector(
@@ -63,7 +64,7 @@ class MovieItemListView extends StatelessWidget {
                   highlightColor: Colors.white,
                   enabled: true,
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 0.31,
+                    width: 31.w,
                     height: double.infinity,
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     decoration: BoxDecoration(
@@ -81,8 +82,7 @@ class MovieItemListView extends StatelessWidget {
 
 class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
   final MovieEntity movie;
-  const MovieItemBuilderForPopularAndTopRated({Key? key, required this.movie})
-      : super(key: key);
+  const MovieItemBuilderForPopularAndTopRated({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10.0),
         margin: const EdgeInsets.all(10.0),
-        height: MediaQuery.of(context).size.height * 0.21,
+        height: 21.h,
         decoration: BoxDecoration(
           color: const Color(0xff303030),
           borderRadius: BorderRadius.circular(15.0),
@@ -104,7 +104,7 @@ class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
               child: CachedNetworkImage(
                 height: double.infinity,
-                width: MediaQuery.of(context).size.width * 0.31,
+                width: 31.w,
                 fit: BoxFit.cover,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
                 imageUrl: ApiConstants.getImageUrl(movie.backDropPath),
@@ -120,8 +120,8 @@ class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 10.0,
+            SizedBox(
+              width: 2.5.w,
             ),
             Expanded(
               child: Column(
@@ -130,14 +130,14 @@ class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
                 children: [
                   Text(
                     movie.title,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: 22.0,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontSize: 18.sp,
                         ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                  SizedBox(
+                    height: 1.4.h,
                   ),
                   SizedBox(
                     child: Row(
@@ -156,33 +156,33 @@ class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
                               setupDate(movie.releaseDate),
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
-                                    fontSize: 16.0,
+                                    fontSize: 12.8.sp,
                                   ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.2,
+                          width: 20.w,
                         ),
                         SizedBox(
-                          width: 40.0,
+                          width: 10.w,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Icon(
+                              Icon(
                                 Icons.star,
                                 color: Colors.amber,
-                                size: 16.0,
+                                size: 14.sp,
                               ),
                               Text(
                                 (movie.voteAverage).toStringAsFixed(1),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
-                                      fontSize: 16.0,
+                                      fontSize: 12.sp,
                                     ),
                               )
                             ],
@@ -191,13 +191,13 @@ class MovieItemBuilderForPopularAndTopRated extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 15.0,
+                  SizedBox(
+                    height: 2.h,
                   ),
                   Text(
                     movie.overview,
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          fontSize: 14.0,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 10.sp,
                         ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,

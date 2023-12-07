@@ -7,11 +7,13 @@ class MoviesStates extends Equatable {
   List<MovieEntity> list;
   RequestStates requestStates;
   String message;
+  int index;
 
   MoviesStates({
     this.list = const [],
     this.requestStates = RequestStates.loading,
     this.message = '',
+    this.index = 0,
   });
 
   @override
@@ -23,13 +25,16 @@ class StateInitial extends MoviesStates {}
 
 // ignore: must_be_immutable
 class StateGetPlayingNowMovies extends MoviesStates {
-  StateGetPlayingNowMovies(
-      {List<MovieEntity> list = const [],
-      String message = '',
-      RequestStates requestStates = RequestStates.loading}) {
+  StateGetPlayingNowMovies({
+    List<MovieEntity> list = const [],
+    String message = '',
+    RequestStates requestStates = RequestStates.loading,
+    int index = 0,
+  }) {
     this.list = list;
     this.message = message;
     this.requestStates = requestStates;
+    this.index = index;
   }
 }
 
@@ -39,21 +44,26 @@ class StateGetPopularMovies extends MoviesStates {
     List<MovieEntity> list = const [],
     String message = '',
     RequestStates requestStates = RequestStates.loading,
+    int index = 0,
   }) {
     this.list = list;
     this.message = message;
     this.requestStates = requestStates;
+    this.index = index;
   }
 }
 
 // ignore: must_be_immutable
 class StateGetTopRatedMovies extends MoviesStates {
-  StateGetTopRatedMovies(
-      {List<MovieEntity> list = const [],
-      String message = '',
-      RequestStates requestStates = RequestStates.loading,}) {
+  StateGetTopRatedMovies({
+    List<MovieEntity> list = const [],
+    String message = '',
+    RequestStates requestStates = RequestStates.loading,
+    int index = 0,
+  }) {
     this.list = list;
     this.message = message;
     this.requestStates = requestStates;
+    this.index = index;
   }
 }

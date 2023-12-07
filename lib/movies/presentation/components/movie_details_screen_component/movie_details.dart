@@ -10,9 +10,10 @@ import 'package:movie_app_with_clean_architecture/movies/domain/entities/movie_d
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_details_bloc/movie_details_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_details_bloc/movie_details_state.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 class MovieDetailsComponent extends StatelessWidget {
-  const MovieDetailsComponent({Key? key}) : super(key: key);
+  const MovieDetailsComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class MovieDetailsComponent extends StatelessWidget {
           case RequestStates.loading:
             return SliverAppBar(
               pinned: true,
-              expandedHeight: MediaQuery.of(context).size.height * 0.35,
+              expandedHeight: 35.h,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios),
                 onPressed: () {
@@ -53,7 +54,7 @@ class MovieDetailsComponent extends StatelessWidget {
                     baseColor: Colors.grey,
                     highlightColor: Colors.white,
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 0.35,
+                      height: 35.h,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.black38,
@@ -67,10 +68,12 @@ class MovieDetailsComponent extends StatelessWidget {
           case RequestStates.success:
             return SliverAppBar(
               pinned: true,
-              expandedHeight: MediaQuery.of(context).size.height * 0.35,
+              expandedHeight: 35.h,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
               flexibleSpace: FlexibleSpaceBar(
                 background: ShaderMask(
@@ -99,7 +102,7 @@ class MovieDetailsComponent extends StatelessWidget {
                       baseColor: Colors.grey,
                       highlightColor: Colors.white,
                       child: Container(
-                        height: MediaQuery.of(context).size.height * 0.35,
+                        height: 35.h,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.black38,
@@ -114,10 +117,12 @@ class MovieDetailsComponent extends StatelessWidget {
           case RequestStates.error:
             return SliverAppBar(
               pinned: true,
-              expandedHeight: MediaQuery.of(context).size.height * 0.35,
+              expandedHeight: 35.h,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
               flexibleSpace: FlexibleSpaceBar(
                 background: ShaderMask(
@@ -138,12 +143,12 @@ class MovieDetailsComponent extends StatelessWidget {
                   },
                   blendMode: BlendMode.dstIn,
                   child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.35,
+                    height: 35.h,
                     child: Center(
                       child: Text(
                         state.message.toString(),
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: 24.0,
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontSize: 16.sp,
                               color: Colors.grey[200],
                             ),
                       ),
@@ -159,7 +164,7 @@ class MovieDetailsComponent extends StatelessWidget {
 }
 
 class MovieDetailsBoxComponent extends StatelessWidget {
-  const MovieDetailsBoxComponent({Key? key}) : super(key: key);
+  const MovieDetailsBoxComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +185,7 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                     baseColor: Colors.grey,
                     highlightColor: Colors.white,
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 0.35,
+                      height: 35.h,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.black38,
@@ -202,15 +207,15 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                   children: [
                     Text(
                       model.title,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 26.0,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontSize: 20.sp,
                           ),
                     ),
-                    const SizedBox(
-                      height: 20.0,
+                    SizedBox(
+                      height: 3.h,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.6,
+                      width: 60.w,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -228,44 +233,44 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                                 setupDate(model.releaseDate),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
-                                      fontSize: 16.0,
+                                      fontSize: 12.5.sp,
                                     ),
                               ),
                             ),
                           ),
                           SizedBox(
-                            width: 45.0,
+                            width: 12.w,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.star,
                                   color: Colors.amber,
-                                  size: 16.0,
+                                  size: 15.sp,
                                 ),
                                 Text(
                                   (model.voteAverage).toStringAsFixed(1),
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText2!
+                                      .bodyMedium!
                                       .copyWith(
-                                        fontSize: 16.0,
+                                        fontSize: 12.0.sp,
                                       ),
                                 )
                               ],
                             ),
                           ),
                           SizedBox(
-                            width: 60.0,
+                            width: 15.w,
                             child: Text(
                               setupTime(model.runtime),
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
-                                    fontSize: 16.0,
+                                    fontSize: 12.5.sp,
                                     color: const Color(0xffb5b5b8),
                                   ),
                             ),
@@ -273,8 +278,8 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 25.0,
+                    SizedBox(
+                      height: 3.h,
                     ),
                     ExpandableText(
                       model.overview,
@@ -282,29 +287,29 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                       collapseText: AppStrings.showLess,
                       maxLines: 2,
                       linkColor: Colors.lightBlue,
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            fontSize: 16.0,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontSize: 12.5.sp,
                           ),
                     ),
-                    const SizedBox(
-                      height: 15.0,
+                    SizedBox(
+                      height: 2.h,
                     ),
                     Text(
                       setupGenres(model.genres),
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: const Color(0xffa5a5a9),
                             fontWeight: FontWeight.w900,
-                            fontSize: 14.0,
+                            fontSize: 11.sp,
                             letterSpacing: 1.4,
                           ),
                     ),
-                    const SizedBox(
-                      height: 30.0,
+                    SizedBox(
+                      height: 3.h,
                     ),
                     Text(
                       AppStrings.moreLikeThis,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 16.0,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontSize: 12.5.sp,
                           ),
                     ),
                   ],
@@ -317,12 +322,12 @@ class MovieDetailsBoxComponent extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
               sliver: SliverToBoxAdapter(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.31,
+                  height: 31.h,
                   child: Center(
                     child: Text(
                       state.message.toString(),
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 24.0,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontSize: 16.sp,
                             color: Colors.grey[200],
                           ),
                     ),

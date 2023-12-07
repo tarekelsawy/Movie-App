@@ -10,18 +10,20 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/components
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/popular_movie_screen.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/top_rated_movie_screen.dart';
 import 'package:movie_app_with_clean_architecture/tvs/domain/entities/tv_entity.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_on_the_air_components.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_popular_component.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_top_rated_component.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/home_screen_component/tv_on_the_air_components.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/home_screen_component/tv_popular_component.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/home_screen_component/tv_top_rated_component.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:transparent_route/transparent_route.dart';
+
+import '../screens/details_tv_screen.dart';
 
 class TvSuccessWidgetHandling extends StatelessWidget {
   final List<TvEntity> list;
   const TvSuccessWidgetHandling({
-    Key? key,
+    super.key,
     required this.list,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class TvItemListView extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: GestureDetector(
           onTap: () {
-            ///TODO:navigateTo(MovieDetailsScreen(movieId: item.id), context);
+            navigateTo(DetailsTvScreen(tvId: item.id), context);
           },
           child: CachedNetworkImage(
               errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -92,14 +94,13 @@ class TvItemListView extends StatelessWidget {
 
 class TvItemBuilderForPopularAndTopRated extends StatelessWidget {
   final TvEntity tv;
-  const TvItemBuilderForPopularAndTopRated({Key? key, required this.tv})
-      : super(key: key);
+  const TvItemBuilderForPopularAndTopRated({super.key, required this.tv});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        //TODO: navigateTo(MovieDetailsScreen(tvId: tv.id), context);
+        navigateTo(DetailsTvScreen(tvId: tv.id), context);
       },
       child: Container(
         padding: const EdgeInsets.all(10.0),
@@ -142,7 +143,7 @@ class TvItemBuilderForPopularAndTopRated extends StatelessWidget {
                 children: [
                   Text(
                     tv.name,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 22.0,
                         ),
                     overflow: TextOverflow.ellipsis,
@@ -168,7 +169,7 @@ class TvItemBuilderForPopularAndTopRated extends StatelessWidget {
                               setupDate(tv.firstAirDate),
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: 16.0,
                                   ),
@@ -192,7 +193,7 @@ class TvItemBuilderForPopularAndTopRated extends StatelessWidget {
                                 (tv.voteAverage).toStringAsFixed(1),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 16.0,
                                     ),
@@ -208,7 +209,7 @@ class TvItemBuilderForPopularAndTopRated extends StatelessWidget {
                   ),
                   Text(
                     tv.overview,
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 14.0,
                         ),
                     overflow: TextOverflow.ellipsis,
@@ -241,7 +242,7 @@ class Screen {
                   children: [
                     Text(
                       AppStrings.popular,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 18.0,
                           ),
                     ),
@@ -259,7 +260,7 @@ class Screen {
                           child: Text(
                             AppStrings.seeMore,
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 14.0,
                                     ),
                           ),
@@ -281,7 +282,7 @@ class Screen {
                   children: [
                     Text(
                       AppStrings.topRated,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 18.0,
                           ),
                     ),
@@ -299,7 +300,7 @@ class Screen {
                           child: Text(
                             AppStrings.seeMore,
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 14.0,
                                     ),
                           ),
@@ -330,7 +331,7 @@ class Screen {
                   children: [
                     Text(
                       AppStrings.popular,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 18.0,
                           ),
                     ),
@@ -349,7 +350,7 @@ class Screen {
                           child: Text(
                             AppStrings.seeMore,
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 14.0,
                                     ),
                           ),
@@ -371,7 +372,7 @@ class Screen {
                   children: [
                     Text(
                       AppStrings.topRated,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 18.0,
                           ),
                     ),
@@ -390,7 +391,7 @@ class Screen {
                           child: Text(
                             AppStrings.seeMore,
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontSize: 14.0,
                                     ),
                           ),

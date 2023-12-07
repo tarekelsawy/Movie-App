@@ -5,12 +5,13 @@ import 'package:movie_app_with_clean_architecture/core/services/service_locator.
 import 'package:movie_app_with_clean_architecture/core/utils/constants.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_events.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_bloc.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_events.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_states.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/bloc/tv_bloc/tv_bloc.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/bloc/tv_bloc/tv_events.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/bloc/tv_bloc/tv_states.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class HomeScreen extends StatelessWidget {
       child: BlocBuilder<TvBloc, TvStates>(
         builder: (context, state) {
           TvBloc tv = TvBloc.get(context);
+
           return Scaffold(
             body: Constants.screens[state.indexOfHomeScreen],
             bottomNavigationBar: ConvexAppBar(

@@ -14,10 +14,14 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/controller
 import 'package:movie_app_with_clean_architecture/tvs/data/data_source/tv_remote_data_source.dart';
 import 'package:movie_app_with_clean_architecture/tvs/data/repo/tv_repo.dart';
 import 'package:movie_app_with_clean_architecture/tvs/domain/repo/base_tv_repo.dart';
+import 'package:movie_app_with_clean_architecture/tvs/domain/use_cases/get_episodes_tv_use_case.dart';
 import 'package:movie_app_with_clean_architecture/tvs/domain/use_cases/get_on_the_air_tv_usecase.dart';
 import 'package:movie_app_with_clean_architecture/tvs/domain/use_cases/get_popular_tv_usecase.dart';
+import 'package:movie_app_with_clean_architecture/tvs/domain/use_cases/get_recommended_tv_use_case.dart';
+import 'package:movie_app_with_clean_architecture/tvs/domain/use_cases/get_tv_details_usecase.dart';
 import 'package:movie_app_with_clean_architecture/tvs/domain/use_cases/get_tv_top_rated_tv.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_bloc.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/bloc/tv_bloc/tv_bloc.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/bloc/tv_details_bloc/tv_details_bloc.dart';
 
 GetIt movieServiceLocator = GetIt.instance;
 GetIt tvServiceLocator = GetIt.instance;
@@ -26,6 +30,8 @@ class ServiceLocator {
   static void init() {
     ///bloc
     ///tv
+    tvServiceLocator.registerFactory(() => TvDetailsBloc(
+        tvServiceLocator(), tvServiceLocator(), tvServiceLocator()));
     tvServiceLocator.registerFactory(() =>
         TvBloc(tvServiceLocator(), tvServiceLocator(), tvServiceLocator()));
 
@@ -43,6 +49,12 @@ class ServiceLocator {
 
     ///USE CASE
     ///tv
+    tvServiceLocator.registerLazySingleton(
+        () => UseCaseGetRecommendedTv(tvServiceLocator()));
+    tvServiceLocator
+        .registerLazySingleton(() => UseCaseGetEpisodesTv(tvServiceLocator()));
+    tvServiceLocator
+        .registerLazySingleton(() => UseCaseGetDetailsTv(tvServiceLocator()));
     tvServiceLocator
         .registerLazySingleton(() => UseCaseGetOnTheAirTv(tvServiceLocator()));
     tvServiceLocator

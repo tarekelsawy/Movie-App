@@ -8,7 +8,7 @@ class TvDetailsEntity extends Equatable {
   final int id;
   final String name;
   String? backdropPath;
-  final List<int> episodeRunTime;
+  final int episodeRunTime;
   final String firstAirDate;
   final List<TvGenresDetails> genres;
   final num voteAverage;

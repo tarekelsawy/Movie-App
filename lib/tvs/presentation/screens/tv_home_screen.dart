@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_on_the_air_components.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_popular_component.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/components/tv_top_rated_component.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/home_screen_component/tv_on_the_air_components.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/home_screen_component/tv_popular_component.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/components/home_screen_component/tv_top_rated_component.dart';
 import 'package:movie_app_with_clean_architecture/tvs/presentation/screens/popular_tv_screen.dart';
 import 'package:movie_app_with_clean_architecture/tvs/presentation/screens/top_rated_tv_screen.dart';
 import 'package:transparent_route/transparent_route.dart';
@@ -28,7 +28,7 @@ class TvHomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     AppStrings.popular,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 18.0,
                         ),
                   ),
@@ -47,7 +47,7 @@ class TvHomeScreen extends StatelessWidget {
                         child: Text(
                           AppStrings.seeMore,
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: 14.0,
                                   ),
                         ),
@@ -69,7 +69,7 @@ class TvHomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     AppStrings.topRated,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontSize: 18.0,
                         ),
                   ),
@@ -87,7 +87,7 @@ class TvHomeScreen extends StatelessWidget {
                         child: Text(
                           AppStrings.seeMore,
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     fontSize: 14.0,
                                   ),
                         ),

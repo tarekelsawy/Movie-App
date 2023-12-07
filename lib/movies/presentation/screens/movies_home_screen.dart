@@ -4,12 +4,14 @@ import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/movie_home_screen_component/playing_now_components.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/movie_home_screen_component/popular_component.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/movie_home_screen_component/top_rated_component.dart';
+import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/popular_movie_screen.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/top_rated_movie_screen.dart';
+import 'package:sizer/sizer.dart';
 import 'package:transparent_route/transparent_route.dart';
 
 class MovieHomeScreen extends StatelessWidget {
-  const MovieHomeScreen({Key? key}) : super(key: key);
+  const MovieHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +31,8 @@ class MovieHomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     AppStrings.popular,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: 18.0,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontSize: 15.sp,
                         ),
                   ),
                   SizedBox(
@@ -47,8 +49,8 @@ class MovieHomeScreen extends StatelessWidget {
                         child: Text(
                           AppStrings.seeMore,
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 14.0,
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontSize: 11.sp,
                                   ),
                         ),
                       ),
@@ -69,8 +71,8 @@ class MovieHomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     AppStrings.topRated,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: 18.0,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontSize: 15.sp,
                         ),
                   ),
                   SizedBox(
@@ -87,8 +89,8 @@ class MovieHomeScreen extends StatelessWidget {
                         child: Text(
                           AppStrings.seeMore,
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 14.0,
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontSize: 11.sp,
                                   ),
                         ),
                       ),

@@ -18,6 +18,11 @@ class ApiConstants {
   static String get getTvOnTheAirUrl => baseURL + endPointOnTheAirTv;
   static String get getTvPopularUrl => baseURL + endPointPopularTv;
   static String get getTvTopRatedUrl => baseURL + endPointTopRatedTv;
+  static String getTvDetails(int tvId) => '${baseURL}tv/${tvId.toString()}';
+  static String getTvEpisodes({required int movieId, required seasonNumber}) =>
+      '${baseURL}tv/${movieId.toString()}/season/${seasonNumber.toString()}';
+  static String getTvRecommendation(int movieId) =>
+      '${baseURL}tv/${movieId.toString()}/recommendations';
 }
 //https://api.themoviedb.org/3/movie/616820?api_key=6c964a6f9febfdb19b92ce80e5b6620a
 //https://api.themoviedb.org/3/movie/now_playing?api_key=6c964a6f9febfdb19b92ce80e5b6620a

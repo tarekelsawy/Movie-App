@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_with_clean_architecture/core/services/service_locator.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/bloc_observer.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/screens/home_screen.dart';
+import 'package:sizer/sizer.dart';
+
+import 'tvs/presentation/screens/home_screen.dart';
 
 Future<void> main() async {
   Bloc.observer = MyBlocObserver();
@@ -13,11 +15,11 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return Sizer(builder: (context, orientation, deviceType)=>MaterialApp(
       title: AppStrings.appTitle,
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
@@ -25,17 +27,18 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xff1e1e29),
         primaryColor: Colors.blue,
         textTheme: const TextTheme(
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             color: Colors.white,
             fontFamily: AppStrings.bodyTextOneFontFamily,
           ),
-          bodyText2: TextStyle(
+          bodyMedium: TextStyle(
             color: Colors.white,
             fontFamily: AppStrings.bodyTextTwoFontFamily,
           ),
         ),
       ),
       home: const HomeScreen(),
-    );
-  }
+      // home: const DetailsTvScreen(),
+    ),
+);  }
 }

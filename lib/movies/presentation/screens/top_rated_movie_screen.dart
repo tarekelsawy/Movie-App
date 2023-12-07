@@ -6,9 +6,10 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/components
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_bloc.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_events.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
+import 'package:sizer/sizer.dart';
 
 class TopRatedMovieScreen extends StatelessWidget {
-  const TopRatedMovieScreen({Key? key}) : super(key: key);
+  const TopRatedMovieScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,8 @@ class TopRatedMovieScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             AppStrings.topRatedMovies,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: 22.0,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 18.sp,
                 ),
           ),
         ),

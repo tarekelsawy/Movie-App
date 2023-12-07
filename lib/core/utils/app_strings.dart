@@ -13,4 +13,6 @@ class AppStrings {
   static const String bodyTextTwoFontFamily = 'Quicksand';
   static const String bodyTextOneFontFamily = 'Righteous Regular';
   static const String appTitle = 'Movie App';
+  static const String apiKey = 'api_key';
+  static const String episodes = 'EPISODES';
 }

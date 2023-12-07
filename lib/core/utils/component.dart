@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_with_clean_architecture/movies/domain/entities/genres.dart';
 
 class ErrorWidgetHandling extends StatelessWidget {
   const ErrorWidgetHandling({super.key});
@@ -43,7 +42,7 @@ String setupTime(int time) {
       : '${time % 60}m';
 }
 
-String setupGenres(List<Genres> genres) {
+String setupGenres(List genres) {
   String s = 'Genres: ';
   int ln = genres.length;
   for (int i = 0; i < ln; ++i) {

@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_with_clean_architecture/core/services/service_locator.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/app_strings.dart';
 import 'package:movie_app_with_clean_architecture/tvs/presentation/components/shared_widget.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_bloc.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_events.dart';
-import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/tv_states.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/bloc/tv_bloc/tv_bloc.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/bloc/tv_bloc/tv_events.dart';
+import 'package:movie_app_with_clean_architecture/tvs/presentation/controller/bloc/tv_bloc/tv_states.dart';
 
 class PopularTvScreen extends StatelessWidget {
   const PopularTvScreen({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class PopularTvScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             AppStrings.popularTvs,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 22.0,
                 ),
           ),

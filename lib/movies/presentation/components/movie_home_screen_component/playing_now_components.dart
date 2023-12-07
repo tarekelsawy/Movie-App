@@ -11,6 +11,7 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/controller
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 class MoviePlayingNowComponent extends StatelessWidget {
   const MoviePlayingNowComponent({super.key});
@@ -51,12 +52,12 @@ class ErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.425,
+      height: 42.5.h,
       child: Center(
         child: Text(
           state.message.toString(),
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                fontSize: 24.0,
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontSize: 16.sp,
                 color: Colors.grey[200],
               ),
         ),
@@ -71,7 +72,7 @@ class LoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.425,
+      height: 42.5.h,
       child: const Center(child: CircularProgressIndicator()),
     );
   }
@@ -91,7 +92,7 @@ class SuccessWidget extends StatelessWidget {
       duration: const Duration(milliseconds: 800),
       child: CarouselSlider(
         options: CarouselOptions(
-          height: MediaQuery.of(context).size.height * 0.435,
+          height: 43.5.h,
           viewportFraction: 1.0,
           autoPlay: true,
           enableInfiniteScroll: true,
@@ -128,7 +129,7 @@ class SuccessWidget extends StatelessWidget {
                           baseColor: Colors.grey,
                           highlightColor: Colors.white,
                           child: Container(
-                            height: MediaQuery.of(context).size.height * 0.425,
+                            height: 42.5.h,
                             decoration: const BoxDecoration(
                               color: Colors.black38,
                             ),
@@ -136,7 +137,7 @@ class SuccessWidget extends StatelessWidget {
                         )),
                     imageUrl: ApiConstants.getImageUrl(item.backDropPath),
                     fit: BoxFit.cover,
-                    height: MediaQuery.of(context).size.height * 0.41,
+                    height: 41.h,
                   ),
                 ),
                 Align(
@@ -145,7 +146,7 @@ class SuccessWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       top: 10.0,
                     ),
-                    height: MediaQuery.of(context).size.height * 0.14,
+                    height: 16.h,
                     child: Column(
                       children: [
                         Row(
@@ -156,29 +157,32 @@ class SuccessWidget extends StatelessWidget {
                               backgroundColor: Colors.red,
                               radius: 5.0,
                             ),
-                            const SizedBox(
-                              width: 10.0,
+                            SizedBox(
+                              width: 2.5.w,
                             ),
                             Text(
                               AppStrings.playingNow,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
-                                    fontSize: 16.0,
+                                    fontSize: 12.sp,
                                   ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
+                        SizedBox(
+                          height: 1.6.h,
                         ),
                         Text(
                           item.title.toString(),
                           style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 20,
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontSize: 17.sp,
                                   ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),

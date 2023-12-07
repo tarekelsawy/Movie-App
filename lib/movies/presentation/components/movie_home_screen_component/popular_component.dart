@@ -5,6 +5,7 @@ import 'package:movie_app_with_clean_architecture/core/utils/component.dart';
 import 'package:movie_app_with_clean_architecture/core/utils/enums.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/components/shared_widget.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_bloc/movies_states.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../controller/bloc/movie_bloc/movies_bloc.dart';
 
@@ -18,6 +19,7 @@ class MoviePopularComponent extends StatelessWidget {
         return current is StateGetPopularMovies ? true : false;
       }),
       builder: (context, state) {
+        debugPrint('now playing list : ${state.list}');
         switch (state.requestStates) {
           case RequestStates.loading:
             return const LoadingWidgetHandling();
@@ -34,16 +36,16 @@ class MoviePopularComponent extends StatelessWidget {
 class SuccessWidget extends StatelessWidget {
   final MoviesStates state;
   const SuccessWidget({
-    Key? key,
+    super.key,
     required this.state,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return FadeIn(
       duration: const Duration(milliseconds: 800),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.2,
+        height: 20.h,
         child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,

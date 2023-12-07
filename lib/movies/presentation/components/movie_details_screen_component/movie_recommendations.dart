@@ -9,9 +9,10 @@ import 'package:movie_app_with_clean_architecture/movies/presentation/controller
 import 'package:movie_app_with_clean_architecture/movies/presentation/controller/bloc/movie_details_bloc/movie_details_state.dart';
 import 'package:movie_app_with_clean_architecture/movies/presentation/screens/movie_detals_screen.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 class MovieRecommendationsComponent extends StatelessWidget {
-  const MovieRecommendationsComponent({Key? key}) : super(key: key);
+  const MovieRecommendationsComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +27,10 @@ class MovieRecommendationsComponent extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: MediaQuery.of(context).size.width * 0.315,
+                  maxCrossAxisExtent: 31.5.w,
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 10.0,
-                  mainAxisExtent: MediaQuery.of(context).size.height * 0.24,
+                  mainAxisExtent: 24.h,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   childCount: model.length,
@@ -58,10 +59,10 @@ class MovieRecommendationsComponent extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: MediaQuery.of(context).size.width * 0.315,
+                  maxCrossAxisExtent: 31.5.w,
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 10.0,
-                  mainAxisExtent: MediaQuery.of(context).size.height * 0.24,
+                  mainAxisExtent: 24.h,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   childCount: model.length,
@@ -106,10 +107,10 @@ class MovieRecommendationsComponent extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: MediaQuery.of(context).size.width * 0.315,
+                  maxCrossAxisExtent: 31.5.w,
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 10.0,
-                  mainAxisExtent: MediaQuery.of(context).size.height * 0.24,
+                  mainAxisExtent: 24.h,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   childCount: model.length,
@@ -121,8 +122,8 @@ class MovieRecommendationsComponent extends StatelessWidget {
                           child: Text(
                             state.message,
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 17.0,
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      fontSize: 13.sp,
                                     ),
                           ),
                         ),

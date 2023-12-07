@@ -13,6 +13,7 @@ class UseCaseGetDetailsTv
   @override
   Future<Either<Failure, TvDetailsEntity>> call(
       MovieDetailsParameter parameter) async {
+    print('from usecase');
     return await baseTvRepo.getDetailsTv(parameter.id);
   }
 }
